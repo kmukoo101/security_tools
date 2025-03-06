@@ -4,6 +4,7 @@ Current Tools Available:
 1. [ETL Pipeline for Logistics Data](#1-etl-pipeline-for-logistics-data)
 2. [Security Automation Toolbox](#2-security-automation-toolbox)
 3. [Security Hardener](#3-security-hardener)
+4. [Threat Intelligence Dashboard](#4-threat-intelligence-dashboard)
 
 ## Setup
 
@@ -211,3 +212,29 @@ This is an automated script designed to enhance the security posture of Linux sy
 
 ---
 
+## 4. Threat Intelligence Dashboard
+
+### Overview
+This tool provides real-time security insights by gathering data from VirusTotal, AlienVault, and Shodan, allowing users to search, analyze, and export** threat data, helping security teams and small businesses stay ahead of cyber threats.
+
+### Features
+- Gathers live threat intelligence from multiple sources.
+- Stores threat intelligence data in an SQLite database.
+- Interactive dashboard for real-time analysis (using Streamlit).
+- Search Functionality for domains, IPs, and threat indicators.
+- Exports threat data to CSV.
+- Logging API requests and system errors.
+
+### Run
+   ```sh
+   streamlit run threat_intelligence_dashboard.py
+   ```
+
+### Future Enhancements
+- Automated alerting system for high-risk threats.
+- Visualization charts to show top threats over time.
+- API key authentication for external data sources.
+
+[Back to top](#security-tools)
+
+---
