@@ -1,23 +1,5 @@
 # security_tools
 
-## ETL Pipeline for Load Data (Logistics BI Project)
-
-## Overview
-This project implements an ETL pipeline that automates the ingestion, processing, and storage of transportation and logistics data. The pipeline fetches data from an API, processes it using **Pandas and SQL**, and stores it in a SQLite database. Additionally, Apache Airflow is used for task scheduling and automation.
-
-## Features
-- **Extracts transportation data** from an external API or CSV source.
-- **Transforms raw data** by cleaning, handling missing values, and calculating profit per mile.
-- **Loads the processed data** into a SQLite database for further analysis.
-- **Automated pipeline scheduling** with **Apache Airflow**.
-- **Scalable and adaptable** for integration with other data sources.
-
-## Tech Used
-- **Python** (Pandas, Requests, SQLite3)
-- **Apache Airflow** (Task Scheduling & Automation)
-- **SQL** (Data Storage & Querying)
-- **ETL Process Automation**
-
 ## Setup
 
 ### Clone Repo
@@ -41,12 +23,24 @@ python3 -m venv venv
 source venv/bin/activate
 ```
 
-### Install Required Dependencies (*Optional - would need to add this file*)
+## 1. ETL Pipeline for Load Data (Logistics BI Project)
+
+### Overview
+This project implements an ETL pipeline that automates the ingestion, processing, and storage of transportation and logistics data. The pipeline fetches data from an API, processes it using **Pandas and SQL**, and stores it in a SQLite database. Additionally, Apache Airflow is used for task scheduling and automation.
+
+### Features
+- **Extracts transportation data** from an external API or CSV source.
+- **Transforms raw data** by cleaning, handling missing values, and calculating profit per mile.
+- **Loads the processed data** into a SQLite database for further analysis.
+- **Automated pipeline scheduling** with **Apache Airflow**.
+- **Scalable and adaptable** for integration with other data sources.
+  
+#### Install Required Dependencies (*Optional - would need to add this file*)
 ```sh
 pip install -r requirements.txt
 ```
 
-### Either start with Apache Airflow (*Optional*)
+#### Either start with Apache Airflow (*Optional*)
 If you are using *Airflow*, initialize the db and start web server.
 ```sh
 airflow db init
@@ -54,13 +48,13 @@ airflow webserver -p 8080
 airflow scheduler
 ```
 
-### Or, run manually 
+#### Or, run manually 
 If you want to execute the ETL process **without** scheduling it in Apache Airflow:
 ```sh
 python etl_pipeline.py
 ```
 
-## File Structure
+### File Structure
 ```
 ├── logistics_etl_pipeline.py  # Logistics ETL pipeline script
 ├── requirements.txt  # Make sure to add required dependencies file (not included)
@@ -70,7 +64,7 @@ python etl_pipeline.py
 ├── README.md  # Docs
 ```
 
-## Database Schema (SQLite Table Structure)
+### Database Schema (SQLite Table Structure)
 | Column Name     | Data Type |
 |----------------|-----------|
 | Load_ID        | INTEGER PRIMARY KEY |
@@ -81,8 +75,82 @@ python etl_pipeline.py
 | Driver_Pay     | FLOAT |
 | Tolls          | FLOAT |
 
-## Future Enhancement Ideas
+### Future Enhancement Ideas
 - Integrate with AWS S3 or Google BigQuery for cloud-based data storage.
 - Deploy in Apache Spark for large-scale data processing.
 - Develop a Power BI dashboard to visualize key trends.
 
+## 2. Security Automation Tools
+
+### Overview
+This toolset automates security data collection, enhances threat intelligence gathering, and helps security teams make data-driven decisions. This could be used for any small business hoping to enhance their security hygiene. 
+
+1. **CVE Scanner** – Grabs and stores the latest vulnerabilities from the NVD API in an SQLite database.
+2. **Log File Analyzer** – Extracts security events from firewall, syslog, and AWS CloudTrail logs using regex.
+3. **Threat Intelligence Collector** – Pulls security data from **VirusTotal, AlienVault, Shodan etc, storing the results in a structured database.
+
+#### Features
+- Automated CVE scanning and risk reporting with structured data storage.
+- Log analysis with regex-based security event extraction.
+- Threat intelligence feed aggregation from multiple APIs.
+- SQLite database storage for long-term analysis.
+- Logging framework to enhance monitoring and debugging.
+
+### Running Security Tools
+1. CVE Scanner
+Gets the latest vulnerabilities from NVD and stores them in an SQLite database.
+```sh
+python security_tools.py --fetch_cve
+```
+
+2. Log File Analyzer
+Analyzes logs for failed login attempts, unauthorized access, and suspicious activity.
+```sh
+python security_tools.py --analyze_logs security_logs.txt
+```
+
+3. Threat Intelligence Collector
+Grabs and stores threat intelligence data from VirusTotal, AlienVault, and Shodan.
+```sh
+python security_tools.py --fetch_threats
+```
+
+### **Database Schema (Formatted for GitHub)**
+#### **CVE Data Table**
+```plaintext
+| Column Name      | Data Type  | Description                 |
+|-----------------|-----------|-----------------------------|
+| id             | INTEGER PRIMARY KEY | Unique identifier |
+| cve_id         | TEXT      | CVE ID (e.g., CVE-2024-12345) |
+| description    | TEXT      | CVE description |
+| published_date | TEXT      | Date published |
+```
+
+#### **Security Logs Table**
+```plaintext
+| Column Name  | Data Type | Description                          |
+|-------------|----------|--------------------------------------|
+| id          | INTEGER PRIMARY KEY | Unique identifier       |
+| timestamp   | TEXT     | Time of detected event              |
+| event       | TEXT     | Log message containing security event |
+```
+
+#### **Threat Intelligence Table**
+```plaintext
+| Column Name | Data Type | Description                            |
+|------------|----------|----------------------------------------|
+| id         | INTEGER PRIMARY KEY | Unique identifier         |
+| source     | TEXT     | Threat intelligence source (e.g., VirusTotal) |
+| data       | TEXT     | JSON data of the intelligence feed   |
+```
+
+### Export 
+All collected data can be exported into CSV format for further analysis.
+```sh
+python security_tools.py --export_csv
+```
+
+### Future Enhancements
+- Integrate with ELK for advanced log monitoring.
+- Automated alerts for critical vulnerabilities and detected security events.
+- MLMs for anomaly detection in security logs.
