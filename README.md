@@ -5,6 +5,7 @@ Current Tools Available:
 2. [Security Automation Toolbox](#2-security-automation-toolbox)
 3. [Security Hardener](#3-security-hardener)
 4. [Threat Intelligence Dashboard](#4-threat-intelligence-dashboard)
+5. [Log Analysis & Anomaly Detection](#5-log-analysis--anomaly-detection)
 
 ## Setup
 
@@ -234,6 +235,23 @@ This tool provides real-time security insights by gathering data from VirusTotal
 - Automated alerting system for high-risk threats.
 - Visualization charts to show top threats over time.
 - API key authentication for external data sources.
+
+[Back to top](#security-tools)
+
+---
+
+## 5. Log Analysis & Anomaly Detection
+
+### Overview
+This tool automates log file analysis, detecting failed logins, brute-force attempts, privilege escalation attempts, port scanning, and unauthorized access; aimed for security teams and small businesses to monitor security logs and respond to threats efficiently.
+
+### Features
+- Monitors system logs for failed logins, brute-force attacks, and suspicious activity.
+- Anomaly detection for security threats (regex).
+- Stores detections in a database (SQLite).
+- Sends email alerts when high-risk activity is detected.
+- Exports data to CSV.
+- Tracking security events with configurable logging.
 
 [Back to top](#security-tools)
 
