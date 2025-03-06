@@ -6,6 +6,7 @@ Current Tools Available:
 3. [Security Hardener](#3-security-hardener)
 4. [Threat Intelligence Dashboard](#4-threat-intelligence-dashboard)
 5. [Log Analysis & Anomaly Detection](#5-log-analysis--anomaly-detection)
+6. [Automated Honeypot for Attack Detection](#6-automated-honeypot-for-attack-detection)
 
 ## Setup
 
@@ -65,15 +66,6 @@ If you want to execute the ETL process **without** scheduling it in Apache Airfl
 python etl_pipeline.py
 ```
 
-### File Structure
-```
-├── logistics_etl_pipeline.py  # Logistics ETL pipeline script
-├── requirements.txt  # Make sure to add required dependencies file (not included)
-├── raw_load_data.csv  # Extracted data (not included - can change filename if needed)
-├── cleaned_load_data.csv  # Processed data after transformation
-├── logistics.db  # SQLite database storing final data
-├── README.md  # Docs
-```
 
 ### Database Schema (SQLite Table Structure)
 | Column Name     | Data Type |
@@ -262,6 +254,38 @@ This tool automates log file analysis, detecting failed logins, brute-force atte
    ```sh
    python log_analysis_anomaly_detection.py --export
    ```
+
+[Back to top](#security-tools)
+
+---
+
+## 6. Automated Honeypot for Attack Detection
+
+### Overview
+This tool listens for unauthorized access attempts on common attack ports (SSH, HTTP, HTTPS, RDP, VNC), detects suspicious activity, classifies attack types, and stores attack data for forensic analysis.
+
+### Features
+- Monitors multiple ports for intrusion attempts.
+- Identifies attack types (Brute Force, SQL Injection, Port Scanning, Malware Execution etc.).
+- Stores attack data into database for forensic analysis (SQLite).
+- Sends real-time email alerts when a critical attack is detected.
+- Responds to attackers to engage them and collect intelligence.
+- Logging for tracking attack trends.
+
+### Run
+   ```sh
+   python automated_honeypot.py
+   ```
+
+### Review Logged Attacks
+   ```sh
+   sqlite3 honeypot_logs.db "SELECT * FROM honeypot;"
+   ```
+
+### Future Enhancements
+- Auto-block repeat offenders via firewall rules.
+- Real-time dashboard for attack visualizations (interactive, ideally).
+- Integration with SIEM tools.
 
 [Back to top](#security-tools)
 
