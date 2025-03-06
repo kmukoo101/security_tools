@@ -1,5 +1,10 @@
 # security_tools
 
+Current Tools Available: 
+1. [ETL Pipeline for Logistics Data](#1-etl-pipeline-for-logistics-data)
+2. [Security Automation Toolbox](#2-security-automation-toolbox)
+3. [Security Hardener](#3-security-hardener)
+
 ## Setup
 
 ### Clone Repo
@@ -23,7 +28,11 @@ python3 -m venv venv
 source venv/bin/activate
 ```
 
-## 1. ETL Pipeline for Load Data (Logistics BI Project)
+[Back to top](#security-tools)
+
+---
+
+## 1. ETL Pipeline for Logistics Data
 
 ### Overview
 This project implements an ETL pipeline that automates the ingestion, processing, and storage of transportation and logistics data. The pipeline fetches data from an API, processes it using **Pandas and SQL**, and stores it in a SQLite database. Additionally, Apache Airflow is used for task scheduling and automation.
@@ -80,7 +89,11 @@ python etl_pipeline.py
 - Deploy in Apache Spark for large-scale data processing.
 - Develop a Power BI dashboard to visualize key trends.
 
-## 2. Security Automation Tools
+[Back to top](#security-tools)
+
+---
+
+## 2. Security Automation Toolbox
 
 ### Overview
 This toolset automates security data collection, enhances threat intelligence gathering, and helps security teams make data-driven decisions. This could be used for any small business hoping to enhance their security hygiene. 
@@ -102,6 +115,8 @@ Gets the latest vulnerabilities from NVD and stores them in an SQLite database.
 ```sh
 python security_tools.py --fetch_cve
 ```
+
+---
 
 2. Log File Analyzer
 Analyzes logs for failed login attempts, unauthorized access, and suspicious activity.
@@ -154,3 +169,45 @@ python security_tools.py --export_csv
 - Integrate with ELK for advanced log monitoring.
 - Automated alerts for critical vulnerabilities and detected security events.
 - MLMs for anomaly detection in security logs.
+
+[Back to top](#security-tools)
+
+---
+
+## 3. Security Hardener
+
+### Overview
+This is an automated script designed to enhance the security posture of Linux systems by enforcing hardening configurations and minimizing attack surfaces. Please note this tool is intended for system administrators, cybersecurity professionals, and small businesses looking for an accessible security solution without relying on expensive enterprise tools.
+
+#### Features  
+- **Key Configurations Backup** – Prevents accidental misconfigurations by creating backups of critical system files before making changes.  
+- **SSH Hardening** – Disables root login over SSH to prevent unauthorized access.  
+- **Password Policy Enforcement** – Implements strong password policies including expiration limits and minimum password age.  
+- **Firewall Configuration** – Configures UFW to block unnecessary traffic and allow only essential services.  
+- **Service Hardening** – Disables insecure or unnecessary services like Telnet, FTP, and NFS.  
+- **System Updates** – Ensures the latest security patches are applied.  
+- **Security Auditing** – Enables audit logging to monitor failed logins and suspicious activity.  
+- **Fail2Ban Protection** – Installs and configures Fail2Ban to block brute-force attacks on SSH.  
+- **Sudo Access Restriction** – Restricts privilege escalation to authorized users only.  
+- **USB Storage Block** – Prevents unauthorized use of USB storage devices.  
+- **Kernel Security Enhancements** – Applies secure kernel parameters to harden network security.  
+
+### Run
+   ```sh
+   sudo python3 security_hardening.py
+   ```
+
+#### Review logs for details
+   ```sh
+   cat security_hardening.log
+   ```
+
+#### Future Enhancements  
+- Automated reporting with a security summary after execution.  
+- Email notifications when security changes are applied.  
+- Integration with cloud security tools for remote hardening.  
+
+[Back to top](#security-tools)
+
+---
+
