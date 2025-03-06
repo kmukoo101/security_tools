@@ -253,6 +253,16 @@ This tool automates log file analysis, detecting failed logins, brute-force atte
 - Exports data to CSV.
 - Tracking security events with configurable logging.
 
+### Run
+   ```sh
+   python log_analysis_anomaly_detection.py
+   ```
+
+### Export Logs (to CSV)
+   ```sh
+   python log_analysis_anomaly_detection.py --export
+   ```
+
 [Back to top](#security-tools)
 
 ---
